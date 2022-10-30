@@ -13,23 +13,27 @@ datasource db {
 enum ROLE {
   ADMIN
   CONTRACTOR
+  GUEST
 }
 
 model User {
   id             String @id @default(uuid())
   name           String
   email          String
-  role           ROLE
+  role           ROLE   @default(GUEST)
   qualifications Json
   createdBids    Bid[]  @relation("createbids")
   votedBids      Bid[]  @relation("votebids")
+
+  @@unique([email, name])
+  @@index([name])
 }
 
 model Bid {
   id        String      @id @default(uuid())
   rating    Float
-  createdAt DateTime
-  updatedAt DateTime
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
   owner     User        @relation("createbids", fields: [ownerId], references: [id])
   ownerId   String
   votedBy   User?       @relation("votebids", fields: [votedById], references: [id])
