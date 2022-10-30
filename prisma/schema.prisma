@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ROLE {
+  ADMIN
+  CONTRACTOR
+}
+
+model User {
+  id             String @id @default(uuid())
+  name           String
+  email          String
+  role           ROLE
+  qualifications Json
+  createdBids    Bid[]  @relation("createbids")
+  votedBids      Bid[]  @relation("votebids")
+}
+
+model Bid {
+  id        String      @id @default(uuid())
+  rating    Float
+  createdAt DateTime
+  updatedAt DateTime
+  owner     User        @relation("createbids", fields: [ownerId], references: [id])
+  ownerId   String
+  votedBy   User?       @relation("votebids", fields: [votedById], references: [id])
+  votedById String?
+  container Container[]
+}
+
+model Scope {
+  id          String    @id @default(uuid())
+  container   Container @relation(fields: [containerId], references: [id])
+  containerId String    @unique
+}
+
+model Container {
+  id     String  @id @default(uuid())
+  name   String
+  scopes Scope[]
+  bid    Bid[]
+}
