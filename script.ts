@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 async function createUser() {
   const qualifications = { education: "BE" };
-  await prisma.user.deleteMany();
+  //   await prisma.user.deleteMany();
   const user = await prisma.user.create({
     data: {
       name: "satish",
@@ -55,13 +55,32 @@ async function createManyUsers() {
   //users created { count: 3 } it return count of rows created
 }
 
-async function main() {
+async function getUsers() {
   const users = await prisma.user.findMany();
   console.log(users);
-  // await prisma.user.deleteMany()
+}
+async function getUserByEmail() {
+  const users = await prisma.user.findUnique({
+    where: { email_name: { name: "satish", email: "satish@email.com" } },
+    include: { createdBids: true },
+  });
+  console.log(users);
+
+  const singleUser = await prisma.user.findFirst({ where: { name: "MA" } });
+  console.log(singleUser);
+
+  const orderedUsers = await prisma.user.findMany({
+    where: { AND:[{ role: "ADMIN"}, { name: { contains: "ish" }}], NOT:{qualifications : {equals: { education: 'BE'}}} },
+    orderBy: { name: "desc" },
+  });
+  console.log("orderedUsers : : ", orderedUsers);
 }
 
-createManyUsers()
+async function deleteUser(id: string) {
+  await prisma.user.delete({ where: { id: id } });
+}
+
+getUserByEmail()
   .catch((e) => console.error(e))
   .finally(async () => {
     await prisma.$disconnect();
