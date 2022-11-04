@@ -1,16 +1,13 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, ROLE } from "@prisma/client";
+import {userdata} from "./seed_data"
 const prisma = new PrismaClient();
 
 async function createUser() {
   const qualifications = { education: "BE" };
   //   await prisma.user.deleteMany();
+  const singleUser = userdata[0]
   const user = await prisma.user.create({
-    data: {
-      name: "satish",
-      email: "satish@email.com",
-      role: "ADMIN",
-      qualifications: qualifications,
-    },
+    data : singleUser,
     //include here will return all the above data on creation with the selected fields inside include
     // include : {
     // createdBids : true
@@ -29,26 +26,7 @@ async function createManyUsers() {
   const qualifications = { education: "BE" };
 
   const users = await prisma.user.createMany({
-    data: [
-      {
-        name: "Menon",
-        email: "menon@email.com",
-        role: "ADMIN",
-        qualifications: qualifications,
-      },
-      {
-        name: "PK",
-        email: "pk@email.com",
-        role: "ADMIN",
-        qualifications: qualifications,
-      },
-      {
-        name: "MA",
-        email: "ma@email.com",
-        role: "ADMIN",
-        qualifications: qualifications,
-      },
-    ],
+    data:  userdata,
     skipDuplicates: true,
   });
   console.log("users created", users);
@@ -70,7 +48,7 @@ async function getUserByEmail() {
   console.log(singleUser);
 
   const orderedUsers = await prisma.user.findMany({
-    where: { AND:[{ role: "ADMIN"}, { name: { contains: "ish" }}], NOT:{qualifications : {equals: { education: 'BE'}}} },
+    where: { AND:[{ role: ROLE.ADMIN}, { name: { contains: "ish" }}], NOT:{qualifications : {equals: { education: 'BE'}}} },
     orderBy: { name: "desc" },
   });
   console.log("orderedUsers : : ", orderedUsers);
