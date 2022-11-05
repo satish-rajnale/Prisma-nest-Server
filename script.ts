@@ -1,5 +1,5 @@
 import { PrismaClient, ROLE } from "@prisma/client";
-import {userdata} from "./seed_data"
+import {userdata} from "./prisma/seed_data"
 const prisma = new PrismaClient();
 
 async function createUser() {

@@ -4,10 +4,13 @@
   "compilerOptions": {
     "module": "CommonJS",
     "sourceMap": true,
-    "outDir": "dist",
+    "outDir": "/dist",
     "strict": false,
+    "incremental": false,
+    "noEmit": false,
     "lib": ["esnext"],
     "esModuleInterop": true,
-    "moduleResolution": "Node16"
+    "moduleResolution": "Node16",
+    "experimentalDecorators": true
   }
 }
