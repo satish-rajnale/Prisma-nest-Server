@@ -1,5 +1,5 @@
 import { ROLE } from "@prisma/client";
-
+const qualifications = { education: "BE" };
 export const userdata = [
     {
         name: "satish",

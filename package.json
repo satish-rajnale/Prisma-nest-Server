@@ -6,8 +6,12 @@
   "scripts": {
     "start":"nodemon script.ts"
   },
+  "prisma": {
+      "seed": "node  prisma/seed.js"
+  },
   "keywords": [],
   "author": "",
+  "type": "module",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.11.7",
