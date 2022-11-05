@@ -4,8 +4,9 @@ import { AppModule } from "./app.module";
 
 async function main(){
     const app = await NestFactory.create(AppModule);
+    const port = process.env.PORT || 5050
     // app.use(logger);
-    await app.listen(3000);
-    console.log(`server runnning at http://localhost:${3000}`)
+    await app.listen(port);
+    console.log(`server runnning at http://localhost:${port}`)
 }
 main()

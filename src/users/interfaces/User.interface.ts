@@ -4,7 +4,7 @@ export enum ROLE {
   GUEST = "GUEST",
 }
 
-export interface IUser {
+export interface User {
   id: string;
   name: string;
   email: string;
@@ -19,9 +19,9 @@ export interface IBid {
   rating: number;
   createdAt: Date;
   updatedAt: Date;
-  owner: IUser;
+  owner: User;
   ownerId: String;
-  votedBy?: IUser;
+  votedBy?: User;
   votedById?: string;
   // container:Container[]
 }
