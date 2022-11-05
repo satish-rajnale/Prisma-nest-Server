@@ -1,16 +1,21 @@
 {
-  "include": ["/*"],
-  "exclude": ["./node_modules"],
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
     "sourceMap": true,
-    "outDir": "/dist",
-    "strict": false,
-    "incremental": false,
-    "noEmit": false,
-    "lib": ["esnext"],
-    "esModuleInterop": true,
-    "moduleResolution": "Node16",
-    "experimentalDecorators": true
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false
   }
 }
