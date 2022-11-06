@@ -5,7 +5,7 @@ import { UsersService } from "./users.service"
 @Controller("users")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-  @Get()
+  @Get('all')
   findAll(@Req() request: Request){
     return this.usersService.findAll()
     // return "This action returns all users";
