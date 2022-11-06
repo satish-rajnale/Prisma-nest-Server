@@ -23,8 +23,7 @@ class BidItem {
 }
 
 export class CreateUserDTO {
-    @ApiProperty()
-    id: string;
+  
     @ApiProperty()
     name: string;
     @ApiProperty()

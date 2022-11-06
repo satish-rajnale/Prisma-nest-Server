@@ -21,7 +21,7 @@ model User {
   name           String
   email          String
   role           ROLE   @default(GUEST)
-  qualifications Json
+  qualifications Json?
   createdBids    Bid[]  @relation("createbids")
   votedBids      Bid[]  @relation("votebids")
 
