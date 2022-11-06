@@ -1,8 +1,5 @@
-export enum ROLE {
-  ADMIN = "ADMIN",
-  CONTRACTOR = "CONTRACTOR",
-  GUEST = "GUEST",
-}
+import { ROLE } from "@prisma/client";
+
 
 export interface User {
   id: string;
@@ -10,8 +7,8 @@ export interface User {
   email: string;
   role: ROLE;
   qualifications: any;
-  createdBids: IBid[];
-  votedBids: IBid[];
+  createdBids?: IBid[];
+  votedBids?: IBid[];
 }
 
 export interface IBid {
