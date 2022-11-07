@@ -3,7 +3,7 @@ import { ROLE, User } from "@prisma/client";
 import { IsArray, IsJSON } from "class-validator";
 import { IBid } from "../interfaces/User.interface";
 
-class BidItem {
+export class BidItem {
   @ApiProperty()
   id: string;
   @ApiProperty()
