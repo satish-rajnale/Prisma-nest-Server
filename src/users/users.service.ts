@@ -31,10 +31,10 @@ export class UsersService {
     return user;
   }
 
-  async update(id: string, email: string, name: string, role: ROLE) {
+  async update(id: string, email: string, name: string, role: ROLE, qualifications: User["qualifications"]) {
     const users = await prisma.user.update({
       where: { id: id },
-      data: { email: email, name: name, role: role },
+      data: { email: email, name: name, role: role, qualifications: qualifications },
     });
     return users;
   }

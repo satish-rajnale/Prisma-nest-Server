@@ -38,8 +38,8 @@ export class UsersController {
   @Put()
   @ApiCreatedResponse({ type: CreateUserResDTO })
   update(@Body() request: UpdateUserReqDTO) {
-    const {id, name, email, role} = request
-    const user = this.usersService.update(id, name, email, role);
+    const {id, name, email, role, qualifications} = request
+    const user = this.usersService.update(id, name, email, role, qualifications);
     return user;
   }
 
