@@ -5,7 +5,6 @@
 3. Run `npx prisma generate` : This will generate a prisma client with updated schema
 3. Run `npm run start:dev` to start the server
 4. Run `npx prisma studio` to start a web server for db
-5. 
 You can change `Schema.prisma` file for schema changes as per your need.
 
 ### A typical top-level directory layout
